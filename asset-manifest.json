@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/crud_kids_garage/static/css/main.a936e55a.css",
+    "main.js": "/crud_kids_garage/static/js/main.70b32f7c.js",
+    "static/media/red_car_mod.png": "/crud_kids_garage/static/media/red_car_mod.12d2e85239590ed8971b.png",
+    "static/media/red_car.png": "/crud_kids_garage/static/media/red_car.af115010b412799a9d8c.png",
+    "static/media/green_car_mod.png": "/crud_kids_garage/static/media/green_car_mod.97c133e1a378c17f3244.png",
+    "static/media/green_car.png": "/crud_kids_garage/static/media/green_car.62c1f10b68a608927444.png",
+    "static/media/blue_car_mod.png": "/crud_kids_garage/static/media/blue_car_mod.4658d67da602785ada37.png",
+    "static/media/blue_car.png": "/crud_kids_garage/static/media/blue_car.ebc3c82b4e39ab9da812.png",
+    "static/media/c.png": "/crud_kids_garage/static/media/c.b9f87c9704328e8782d2.png",
+    "static/media/crud.png": "/crud_kids_garage/static/media/crud.892e75a98238d9606b81.png",
+    "static/media/u.png": "/crud_kids_garage/static/media/u.44e9cb520995168d9c7f.png",
+    "static/media/r.png": "/crud_kids_garage/static/media/r.e1383f003910e7ea7bbc.png",
+    "static/media/d.png": "/crud_kids_garage/static/media/d.6734e7013de4344077b6.png",
+    "index.html": "/crud_kids_garage/index.html",
+    "main.a936e55a.css.map": "/crud_kids_garage/static/css/main.a936e55a.css.map",
+    "main.70b32f7c.js.map": "/crud_kids_garage/static/js/main.70b32f7c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a936e55a.css",
+    "static/js/main.70b32f7c.js"
+  ]
+}
