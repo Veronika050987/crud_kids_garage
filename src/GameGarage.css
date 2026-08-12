@@ -1,0 +1,233 @@
+.title
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #0000FF;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.container 
+{ 
+    max-width: 1200px; 
+    width: 90%;                 /* 1. Гарантирует, что на маленьких экранах будут отступы по бокам */
+    box-sizing: border-box;     /* 2. Включает паддинги в общую ширину, чтобы контейнер не вылезал наружу */
+    margin: 40px auto;          /* 3. Задает отступ 40px сверху/снизу и центрирует (auto) по бокам */
+    padding: 20px; 
+    text-align: center; 
+    background-color: #87CEEB; 
+    border-radius: 15px;      
+}
+
+.toolbar 
+{ 
+    margin-bottom: 20px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+.createButton 
+{ 
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none; 
+    border-radius: 10px;
+    cursor: pointer; 
+    font-weight: bold; 
+    box-shadow: 0 4px 6px rgba(0000.1);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;  
+}
+
+.createButton:hover 
+{ 
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #2E8B57;
+    color: white;
+    border: none; 
+    border-radius: 10px;
+    cursor: pointer; 
+    font-weight: bold; 
+    box-shadow: 0 4px 6px rgba(0000.1);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;  
+}
+
+.playground 
+{ 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+    min-height: 300px; 
+    padding: 20px; 
+    border: 3px dashed #ccc; 
+    border-radius: 15px; 
+    background-color: #F0FFF0; 
+}
+.emptyText 
+{ 
+    color: #B22222; 
+    font-size: 18px; 
+    margin-top: 100px; 
+}
+.carCard 
+{ 
+    border: 1px solid #ddd; 
+    border-radius: 12px; 
+    padding: 15px; 
+    width: 290px; 
+    background-color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    gap: 15px;  
+}
+.carImage 
+{ 
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px; 
+    margin-bottom: 6px; 
+}
+
+.actions 
+{ 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+    width: 100%;
+}
+.btnRead 
+{ 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 52px;
+    padding: 0 25px; 
+    box-sizing: border-box;
+    background-color: #2196F3; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+.btnUpdate 
+{ 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 52px;
+    padding: 0 25px; 
+    box-sizing: border-box;
+    background-color: #FF9800; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+.btnDelete 
+{ 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 52px;
+    padding: 0 25px; 
+    box-sizing: border-box;
+    background-color: #f44336; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer 
+}
+
+.btnRead span, .btnUpdate span {
+    display: flex;
+    align-items: center;      /* Выравнивает текст строго по центру вертикали */
+    text-align: center;         /* Выравнивает строки по левому краю (для длинного текста) */
+    line-height: 1;           /* Убирает лишние встроенные отступы строк шрифта */
+    height: 100%;             /* Позволяет тексту занимать всю высоту кнопки для точного центра */
+}
+.btnDelete span {
+    display: inline-block;     /* Меняем flex на inline-block для точечного сдвига */
+    transform: translateY(1px); /* Сдвигает текст ровно на 3 пикселя вниз */
+    margin-left: 45px;         /* Создает фиксированный отступ справа от кубиков */
+    line-height: 1;
+    text-align: center;    
+}
+
+.overlay 
+{ 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-color: rgba(0000.6);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 1000; 
+}
+.modal 
+{ 
+    background-color: white; 
+    padding: 30px; 
+    border-radius: 20px; 
+    max-width: 500px; 
+    width: 90%; 
+    text-align: center; 
+    box-shadow: 0 10px 25px rgba(0000.2); 
+}
+.modalContent 
+{ 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 15px; 
+    margin: 20px 0; 
+}
+.modalImage 
+{ 
+    width: 80%; 
+    height: auto; 
+    border-radius: 10px; 
+}
+.specs 
+{ 
+    font-size: 16px; 
+    text-align: left; 
+    width: 100%; 
+    padding: 0 20px;
+}
+.colorPickerContainer 
+{ 
+    margin-top: 15px; 
+}
+.colorSelector 
+{ 
+    width: 35px; 
+    height: 35px; 
+    border-radius: 50%; 
+    margin: 0 8px; 
+    cursor: pointer; 
+    display: inline-block; 
+}
+.closeButton 
+{ 
+    padding: 10px 20px; 
+    background-color: #555; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    margin-top: 15px; 
+    font-weight: bold; 
+}
