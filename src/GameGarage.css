@@ -119,6 +119,20 @@
     border-radius: 5px; 
     cursor: pointer; 
 }
+.btnRead:hover 
+{ 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 52px;
+    padding: 0 25px; 
+    box-sizing: border-box;
+    background-color: #4169E1; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
 .btnUpdate 
 { 
     display: flex;
@@ -133,6 +147,20 @@
     border-radius: 5px; 
     cursor: pointer; 
 }
+.btnUpdate:hover 
+{ 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 52px;
+    padding: 0 25px; 
+    box-sizing: border-box;
+    background-color: #D2691E; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
 .btnDelete 
 { 
     display: flex;
@@ -142,6 +170,20 @@
     padding: 0 25px; 
     box-sizing: border-box;
     background-color: #f44336; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer 
+}
+.btnDelete:hover 
+{ 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 52px;
+    padding: 0 25px; 
+    box-sizing: border-box;
+    background-color: #800000; 
     color: white; 
     border: none; 
     border-radius: 5px; 
@@ -223,7 +265,18 @@
 .closeButton 
 { 
     padding: 10px 20px; 
-    background-color: #555; 
+    background-color: #4169E1; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    margin-top: 15px; 
+    font-weight: bold; 
+}
+.closeButton:hover 
+{ 
+    padding: 10px 20px; 
+    background-color: #191970; 
     color: white; 
     border: none; 
     border-radius: 8px; 
