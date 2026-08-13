@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CAR_TYPES } from './carsData';
+// import { CAR_TYPES } from './carsData';
 import crud from './img/crud.png';
 import './GameGarage.css';
 import c from './img/c.png';
@@ -7,9 +7,46 @@ import r from './img/r.png';
 import u from './img/u.png';
 import d from './img/d.png';
 
+import blue_car from './img/blue_car.png';
+import blue_car_mod from './img/blue_car_mod.png';
+import green_car from './img/green_car.png';
+import green_car_mod from './img/green_car_mod.png';
+import red_car from './img/red_car.png';
+import red_car_mod from './img/red_car_mod.png';
+
+export const CAR_TYPES = {
+  blue: { 
+    id: 'blue', 
+    nameRu: 'Синяя машинка', nameEn: 'Blue car', 
+    modRu: 'Синие диски', modEn: 'Blue rims',
+    colorRu: 'Синий', colorEn: 'Blue',
+    imgNormal: blue_car, imgMod: blue_car_mod 
+  },
+  green: { 
+    id: 'green', 
+    nameRu: 'Зеленая машинка', nameEn: 'Green car', 
+    modRu: 'Новые шины', modEn: 'New tires',
+    colorRu: 'Зелёный', colorEn: 'Green',
+    imgNormal: green_car, imgMod: green_car_mod 
+  },
+  red: { 
+    id: 'red', 
+    nameRu: 'Kрасная машинка', nameEn: 'Red car', 
+    modRu: 'Желтые диски', modEn: 'Yellow rims',
+    colorRu: 'Красный', colorEn: 'Red',
+    imgNormal: red_car, imgMod: red_car_mod 
+  }
+};
+
 export default function GameGarage() {
+  const [isEnglish, setIsEnglish] = useState(false);
   const [cars, setCars] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null); // Для функции READ (просмотр внутри)
+
+
+  // Получаем машину, которую открыли в гараже
+  const liveCar = cars.find(c => c?.id === selectedCar?.id);
+  const carData = liveCar ? CAR_TYPES[liveCar.type] : null;
 
   // 1. CREATE: Создание случайной машинки (Максимум 4 на площадке)
   const addRandomCar = () => {
@@ -20,13 +57,7 @@ export default function GameGarage() {
     const types = Object.keys(CAR_TYPES);
     const randomType = types[Math.floor(Math.random() * types.length)];
     
-    const newCar = {
-      id: Date.now(), // Уникальный ID
-      type: randomType,
-      isModified: false, // Изначально колеса обычные
-    };
-
-    setCars([...cars, newCar]);
+    setCars([...cars, { id: Date.now(), type: randomType, isModified: false }]);
   };
 
   // 3. UPDATE: Изменение цвета машинки
@@ -56,8 +87,11 @@ export default function GameGarage() {
 
   return (
     <div className='container'>
+      <button className='language' onClick={() => setIsEnglish(!isEnglish)}>
+        {isEnglish ? "Русский" : "English"}
+      </button>
       <h1 className='title'>
-        Детский автосервис вместе с 
+        {isEnglish ? "Kids car service with " : "Детский автосервис вместе с "} 
         <img src={crud} width={100} height={40} alt='CRUD'/>
         </h1>
       
@@ -65,7 +99,7 @@ export default function GameGarage() {
       <div className='toolbar'>
         <button className='createButton' onClick={addRandomCar}>
           <img src={c} width={160} height={60} alt='create'/>
-          Собрать машинку по чертежу
+          {isEnglish ? "Assemble a car using the drawing" : "Собрать машинку по чертежу"}
            ({cars.length}/3)
         </button>
       </div>
@@ -73,9 +107,10 @@ export default function GameGarage() {
       {/* Игровая площадка */}
       <div className='playground'>
         {cars.length === 0 ? (
-          <p className='emptyText'>Площадка пуста. Нажмите кнопку 
+          <p className='emptyText'>
+            {isEnglish ? "The area is empty. Push button " : "Площадка пуста. Нажмите кнопку "} 
           <img src={c} width={160} height={60} alt='create'/>
-          , чтобы создать машинку!</p>
+          {isEnglish ? " to create a car!" : ", чтобы создать машинку!"}</p>
         ) : (
           cars.map((car) => {
             const carData = CAR_TYPES[car.type];
@@ -83,7 +118,7 @@ export default function GameGarage() {
 
             return (
               <div key={car.id} className='carCard'>
-                <img src={currentImg} alt={carData.name} className='carImage' />
+                <img src={currentImg} alt={isEnglish ? carData.nameEn : carData.nameRu} className='carImage' />
                 
                 <div style={{
                     ...styles.carBadge,
@@ -91,26 +126,30 @@ export default function GameGarage() {
                     fontWeight: 'bold',
                     fontSize: '18px'
                 }}>
-                {carData.colorName} {car.isModified && '⭐'}
+                {isEnglish ? carData.colorEn : carData.colorRu} {car.isModified && '⭐'}
                 </div>
 
                 <div className='actions'>
                   {/* READ */}
                   <button className='btnRead' onClick={() => setSelectedCar(car)}>
                     <img src={r} width={110} height={34} alt='read'/>
-                   <span>Рассмотреть машинку</span> 
+                   <span>{isEnglish ? 'Car in details' : 'Рассмотреть машинку'}</span> 
                   </button>
                   
                   {/* UPDATE Колеса */}
                   <button className='btnUpdate' onClick={() => toggleWheels(car.id)}>
                     <img src={u} width={120} height={35} alt='update'/>
-                    <span>{car.isModified ? 'Вернуть колеса' : 'Сменить колеса'}</span> 
+                    <span>
+                      {car.isModified 
+                      ? (isEnglish ? 'Return the wheels' : 'Вернуть колеса') 
+                      : (isEnglish ? 'Change wheels' : 'Сменить колеса')}
+                      </span> 
                   </button>
 
                   {/* DELETE */}
                   <button className='btnDelete' onClick={() => deleteCar(car.id)}>
                     <img src={d} width={100} height={30} alt='delete'/>
-                    <span>Удалить</span> 
+                    <span>{isEnglish ? 'Delete' : 'Удалить'}</span> 
                   </button>
                 </div>
               </div>
@@ -130,9 +169,10 @@ export default function GameGarage() {
             <div className='modal'>
               <h2>
                 <img src={r} width={110} height={34} alt='read'/>
-                 Заглядываем внутрь гаража
+                 {isEnglish ? 'We look inside the garage' : 'Заглядываем внутрь гаража'}
                 </h2>
-              <p>В гараже: <strong>{carData.name}</strong></p>
+              <p>{isEnglish ? 'Inside the garage: ' : 'В гараже: '} 
+                <strong>{isEnglish ? carData.nameEn : carData.nameRu}</strong></p>
               
               <div className='modalContent'>
                 <img 
@@ -144,15 +184,19 @@ export default function GameGarage() {
                 <div className='specs'>
                   <p><strong>
                     <img src={r} width={110} height={34} alt='read'/>
-                    Статус колес:
-                    </strong> {liveCar.isModified ? `Установлено: ${carData.modText}` : 'Стандартные колеса'}</p>
+                    {isEnglish ? 'Wheels status:' : 'Статус колес:'}
+                    </strong>{' '} 
+                    {liveCar.isModified 
+                    ? `${isEnglish ? 'Installed:' : 'Установлено:'} ${isEnglish ? carData.modEn : carData.modRu}`  
+                    : (isEnglish ? 'Standard wheels' : 'Стандартные колеса')}
+                  </p>
                   
                   {/* UPDATE цвета прямо из меню просмотра */}
                   <div className='colorPickerContainer'>
                     <p style={{margin: '5px 0'}}>
                         <strong>
                             <img src={u} width={120} height={35} alt='update'/>
-                            Перекрасить кузов:
+                            {isEnglish ? 'Modify your car:' : 'Изменить машинку:'}
                             </strong></p>
                     {Object.keys(CAR_TYPES).map((colorKey) => (
                       <button
@@ -163,7 +207,10 @@ export default function GameGarage() {
                           border: liveCar.type === colorKey ? '3px solid black' : '1px solid #ccc'
                         }}
                         onClick={() => changeCarColor(liveCar.id, colorKey)}
-                        title={`Сделать ${CAR_TYPES[colorKey].colorName.toLowerCase()}ной`}
+                        title={isEnglish 
+                          ? `Make it ${CAR_TYPES[colorKey].colorEn.toLowerCase()}` 
+                          : `Сделать ${CAR_TYPES[colorKey].colorRu.toLowerCase()}ной`
+                        }
                       />
                     ))}
                   </div>
@@ -171,7 +218,7 @@ export default function GameGarage() {
               </div>
 
               <button className='closeButton' onClick={() => setSelectedCar(null)}>
-                ❌ Закрыть дверь гаража
+                ❌ {isEnglish ? 'Close garage door' : 'Закрыть дверь гаража'}
               </button>
             </div>
           </div>
@@ -183,25 +230,6 @@ export default function GameGarage() {
 
 // Простые встроенные стили для визуализации
 const styles = {
-//   container: { fontFamily: 'Arial, sans-serif', padding: '20px', maxWidth: '1200px', margin: '0 auto', textAlign: 'center', backgroundColor: '#f9f9f9', minHeight: '100vh' },
-//   title: { color: '#333' },
-//   toolbar: { marginBottom: '20px' },
-//   createButton: { padding: '15px 30px', fontSize: '18px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' },
-//   playground: { display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', minHeight: '300px', padding: '20px', border: '3px dashed #ccc', borderRadius: '15px', backgroundColor: '#fff' },
-//   emptyText: { color: '#999', fontSize: '18px', marginTop: '100px' },
-//   carCard: { border: '1px solid #ddd', borderRadius: '12px', padding: '15px', width: '220px', backgroundColor: '#fff', boxShadow: '0 4px 8px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center' },
-//   carImage: { width: '100%', height: 'auto', borderRadius: '8px', marginBottom: '10px' },
    carBadge: { fontWeight: 'bold', marginBottom: '10px', color: '#555' },
-//   actions: { display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' },
-//   btnRead: { padding: '8px', backgroundColor: '#2196F3', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' },
-//   btnUpdate: { padding: '8px', backgroundColor: '#FF9800', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' },
-//   btnDelete: { padding: '8px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' },
-//   overlay: { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 },
-//   modal: { backgroundColor: 'white', padding: '30px', borderRadius: '20px', maxWidth: '500px', width: '90%', textAlign: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' },
-//   modalContent: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', margin: '20px 0' },
-//   modalImage: { width: '80%', height: 'auto', borderRadius: '10px' },
-//   specs: { fontSize: '16px', textAlign: 'left', width: '100%', padding: '0 20px' },
-//   colorPickerContainer: { marginTop: '15px' },
-  colorSelector: { width: '35px', height: '35px', borderRadius: '50%', margin: '0 8px', cursor: 'pointer', display: 'inline-block' },
-//   closeButton: { padding: '10px 20px', backgroundColor: '#555', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', marginTop: '15px', fontWeight: 'bold' }
-};
+  colorSelector: { width: '35px', height: '35px', borderRadius: '50%', margin: '0 8px', cursor: 'pointer', display: 'inline-block' }
+}

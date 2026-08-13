@@ -10,10 +10,10 @@
 .container 
 { 
     max-width: 1200px; 
-    width: 90%;                 /* 1. Гарантирует, что на маленьких экранах будут отступы по бокам */
+    width: 86%;                 /* 1. Гарантирует, что на маленьких экранах будут отступы по бокам */
     box-sizing: border-box;     /* 2. Включает паддинги в общую ширину, чтобы контейнер не вылезал наружу */
     margin: 40px auto;          /* 3. Задает отступ 40px сверху/снизу и центрирует (auto) по бокам */
-    padding: 20px; 
+    padding: 10px; 
     text-align: center; 
     background-color: #87CEEB; 
     border-radius: 15px;      
@@ -21,7 +21,7 @@
 
 .toolbar 
 { 
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -283,4 +283,30 @@
     cursor: pointer; 
     margin-top: 15px; 
     font-weight: bold; 
+}
+.language
+{
+    border: none;
+    border-radius: 5px;
+    background-color: #3CB371;
+    font-size: 18px; 
+    color: #F0F8FF;
+    height: 26px;
+    width: 60px;
+    cursor: pointer;
+    margin: 2px;
+    margin-bottom: 2px;
+}
+.language:hover
+{
+    border: none;
+    border-radius: 5px;
+    background-color: #2E8B57;
+    font-size: 18px; 
+    color: #F0F8FF;
+    height: 26px;
+    width: 60px;
+    cursor: pointer;
+    margin: 2px;
+    margin-bottom: 2px;
 }
