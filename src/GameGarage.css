@@ -44,18 +44,7 @@
 
 .createButton:hover 
 { 
-    padding: 15px 30px;
-    font-size: 18px;
     background-color: #2E8B57;
-    color: white;
-    border: none; 
-    border-radius: 10px;
-    cursor: pointer; 
-    font-weight: bold; 
-    box-shadow: 0 4px 6px rgba(0000.1);
-    display: flex; 
-    align-items: center; 
-    justify-content: center;  
 }
 
 .playground 
@@ -121,17 +110,7 @@
 }
 .btnRead:hover 
 { 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 52px;
-    padding: 0 25px; 
-    box-sizing: border-box;
     background-color: #4169E1; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
 }
 .btnUpdate 
 { 
@@ -149,17 +128,7 @@
 }
 .btnUpdate:hover 
 { 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 52px;
-    padding: 0 25px; 
-    box-sizing: border-box;
     background-color: #D2691E; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
 }
 .btnDelete 
 { 
@@ -177,17 +146,7 @@
 }
 .btnDelete:hover 
 { 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 52px;
-    padding: 0 25px; 
-    box-sizing: border-box;
     background-color: #800000; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer 
 }
 
 .btnRead span, .btnUpdate span {
@@ -275,14 +234,7 @@
 }
 .closeButton:hover 
 { 
-    padding: 10px 20px; 
     background-color: #191970; 
-    color: white; 
-    border: none; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    margin-top: 15px; 
-    font-weight: bold; 
 }
 .language
 {
@@ -292,21 +244,12 @@
     font-size: 18px; 
     color: #F0F8FF;
     height: 26px;
-    width: 60px;
+    width: 65px;
     cursor: pointer;
     margin: 2px;
     margin-bottom: 2px;
 }
 .language:hover
 {
-    border: none;
-    border-radius: 5px;
     background-color: #2E8B57;
-    font-size: 18px; 
-    color: #F0F8FF;
-    height: 26px;
-    width: 60px;
-    cursor: pointer;
-    margin: 2px;
-    margin-bottom: 2px;
 }
