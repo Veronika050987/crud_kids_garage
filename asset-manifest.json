@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/crud_kids_garage/static/css/main.d51dba0f.css",
+    "main.css": "/crud_kids_garage/static/css/main.b708e589.css",
     "main.js": "/crud_kids_garage/static/js/main.2bc527b5.js",
     "static/media/red_car_mod.png": "/crud_kids_garage/static/media/red_car_mod.12d2e85239590ed8971b.png",
     "static/media/red_car.png": "/crud_kids_garage/static/media/red_car.af115010b412799a9d8c.png",
@@ -14,11 +14,11 @@
     "static/media/r.png": "/crud_kids_garage/static/media/r.e1383f003910e7ea7bbc.png",
     "static/media/d.png": "/crud_kids_garage/static/media/d.6734e7013de4344077b6.png",
     "index.html": "/crud_kids_garage/index.html",
-    "main.d51dba0f.css.map": "/crud_kids_garage/static/css/main.d51dba0f.css.map",
+    "main.b708e589.css.map": "/crud_kids_garage/static/css/main.b708e589.css.map",
     "main.2bc527b5.js.map": "/crud_kids_garage/static/js/main.2bc527b5.js.map"
   },
   "entrypoints": [
-    "static/css/main.d51dba0f.css",
+    "static/css/main.b708e589.css",
     "static/js/main.2bc527b5.js"
   ]
 }
