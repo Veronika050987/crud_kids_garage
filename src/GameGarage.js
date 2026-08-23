@@ -92,13 +92,13 @@ export default function GameGarage() {
       </button>
       <h1 className='title'>
         {isEnglish ? "Kids car service with " : "Детский автосервис вместе с "} 
-        <img src={crud} width={100} height={40} alt='CRUD'/>
+        <img src={crud} width={100} height={40} alt='CRUD' loading="lazy" aspectRatio= '1 / 1'/>
         </h1>
       
       {/* Кнопка создания (CREATE) */}
       <div className='toolbar'>
         <button className='createButton' onClick={addRandomCar}>
-          <img src={c} width={160} height={60} alt='create'/>
+          <img src={c} width={160} height={60} alt='create' loading="lazy" aspectRatio= '1 / 1'/>
           {isEnglish ? "Assemble a car using the drawing" : "Собрать машинку по чертежу"}
            ({cars.length}/3)
         </button>
@@ -109,7 +109,7 @@ export default function GameGarage() {
         {cars.length === 0 ? (
           <p className='emptyText'>
             {isEnglish ? "The area is empty. Push button " : "Площадка пуста. Нажмите кнопку "} 
-          <img src={c} width={160} height={60} alt='create'/>
+          <img src={c} width={160} height={60} alt='create' loading="lazy" aspectRatio= '1 / 1'/>
           {isEnglish ? " to create a car!" : ", чтобы создать машинку!"}</p>
         ) : (
           cars.map((car) => {
@@ -118,7 +118,7 @@ export default function GameGarage() {
 
             return (
               <div key={car.id} className='carCard'>
-                <img src={currentImg} alt={isEnglish ? carData.nameEn : carData.nameRu} className='carImage' />
+                <img src={currentImg} alt={isEnglish ? carData.nameEn : carData.nameRu} className='carImage' loading="lazy" aspectRatio= '1 / 1'/>
                 
                 <div style={{
                     ...styles.carBadge,
@@ -132,13 +132,13 @@ export default function GameGarage() {
                 <div className='actions'>
                   {/* READ */}
                   <button className='btnRead' onClick={() => setSelectedCar(car)}>
-                    <img src={r} width={110} height={34} alt='read'/>
+                    <img src={r} width={110} height={34} alt='read' loading="lazy" aspectRatio= '1 / 1'/>
                    <span>{isEnglish ? 'Car in details' : 'Рассмотреть машинку'}</span> 
                   </button>
                   
                   {/* UPDATE Колеса */}
                   <button className='btnUpdate' onClick={() => toggleWheels(car.id)}>
-                    <img src={u} width={120} height={35} alt='update'/>
+                    <img src={u} width={120} height={35} alt='update' loading="lazy" aspectRatio= '1 / 1'/>
                     <span>
                       {car.isModified 
                       ? (isEnglish ? 'Return the wheels' : 'Вернуть колеса') 
@@ -148,7 +148,7 @@ export default function GameGarage() {
 
                   {/* DELETE */}
                   <button className='btnDelete' onClick={() => deleteCar(car.id)}>
-                    <img src={d} width={100} height={30} alt='delete'/>
+                    <img src={d} width={100} height={30} alt='delete' loading="lazy" aspectRatio= '1 / 1'/>
                     <span>{isEnglish ? 'Delete' : 'Удалить'}</span> 
                   </button>
                 </div>
@@ -168,7 +168,7 @@ export default function GameGarage() {
           <div className='overlay'>
             <div className='modal'>
               <h2>
-                <img src={r} width={110} height={34} alt='read'/>
+                <img src={r} width={110} height={34} alt='read' loading="lazy" aspectRatio= '1 / 1'/>
                  {isEnglish ? 'We look inside the garage' : 'Заглядываем внутрь гаража'}
                 </h2>
               <p>{isEnglish ? 'Inside the garage: ' : 'В гараже: '} 
@@ -178,12 +178,14 @@ export default function GameGarage() {
                 <img 
                   src={liveCar.isModified ? carData.imgMod : carData.imgNormal} 
                   alt="Вид изнутри" 
-                  className='modalImage' 
+                  className='modalImage'
+                  loading="lazy" 
+                  aspectRatio= '1 / 1' 
                 />
                 
                 <div className='specs'>
                   <p><strong>
-                    <img src={r} width={110} height={34} alt='read'/>
+                    <img src={r} width={110} height={34} alt='read' loading="lazy" aspectRatio= '1 / 1'/>
                     {isEnglish ? 'Wheels status:' : 'Статус колес:'}
                     </strong>{' '} 
                     {liveCar.isModified 
@@ -195,7 +197,7 @@ export default function GameGarage() {
                   <div className='colorPickerContainer'>
                     <p style={{margin: '5px 0'}}>
                         <strong>
-                            <img src={u} width={120} height={35} alt='update'/>
+                            <img src={u} width={120} height={35} alt='update' loading="lazy" aspectRatio= '1 / 1'/>
                             {isEnglish ? 'Modify your car:' : 'Изменить машинку:'}
                             </strong></p>
                     {Object.keys(CAR_TYPES).map((colorKey) => (
