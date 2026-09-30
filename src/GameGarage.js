@@ -17,41 +17,131 @@ import red_car_mod from './img/red_car_mod.png';
 export const CAR_TYPES = {
   blue: { 
     id: 'blue', 
-    nameRu: 'Синяя машинка', nameEn: 'Blue car', 
-    modRu: 'Синие диски', modEn: 'Blue rims',
-    colorRu: 'Синий', colorEn: 'Blue',
+    nameRu: 'Синяя машинка', nameEn: 'Blue car', nameFr: 'Voiture bleue',
+    modRu: 'Синие диски', modEn: 'Blue rims', modFr: 'Disques bleus',
+    colorRu: 'Синий', colorEn: 'Blue', сolorFr: 'Bleu',
     imgNormal: blue_car, imgMod: blue_car_mod 
   },
   green: { 
     id: 'green', 
-    nameRu: 'Зеленая машинка', nameEn: 'Green car', 
-    modRu: 'Новые шины', modEn: 'New tires',
-    colorRu: 'Зелёный', colorEn: 'Green',
+    nameRu: 'Зеленая машинка', nameEn: 'Green car', nameFr: 'Voiture verte',
+    modRu: 'Новые шины', modEn: 'New tires', modFr: 'Pneus neufs',
+    colorRu: 'Зелёный', colorEn: 'Green', colorFr: 'Vert',
     imgNormal: green_car, imgMod: green_car_mod 
   },
   red: { 
     id: 'red', 
-    nameRu: 'Kрасная машинка', nameEn: 'Red car', 
-    modRu: 'Желтые диски', modEn: 'Yellow rims',
-    colorRu: 'Красный', colorEn: 'Red',
+    nameRu: 'Kрасная машинка', nameEn: 'Red car', nameFr: 'Voiture rouge',
+    modRu: 'Желтые диски', modEn: 'Yellow rims', modFr: 'Disques jaunes',
+    colorRu: 'Красный', colorEn: 'Red', colorFr: 'Rouge',
     imgNormal: red_car, imgMod: red_car_mod 
   }
 };
 
+const translations = {
+  ru: {
+    title: "Детский автосервис вместе с ",
+    assemble: "Собрать машинку по чертежу",
+    empty: "Площадка пуста. Нажмите кнопку ",
+    emptyEnd: ", чтобы создать машинку!",
+    details: "Рассмотреть машинку",
+    returnWheels: "Вернуть колеса",
+    changeWheels: "Сменить колеса",
+    delete: "Удалить",
+    insideGarage: "Заглядываем внутрь гаража",
+    inGarage: "В гараже: ",
+    wheelsStatus: "Статус колес:",
+    installed: "Установлено:",
+    standardWheels: "Стандартные колеса",
+    modify: "Изменить машинку:",
+    makeIt: "Сделать цвета",
+    close: "Закрыть дверь гаража",
+    alertFull: "Площадка заполнена! Можно создать не больше 3 машинок."
+  },
+  en: {
+    title: "Kids car service with ",
+    assemble: "Assemble a car using the drawing",
+    empty: "The area is empty. Push button ",
+    emptyEnd: " to create a car!",
+    details: "Car in details",
+    returnWheels: "Return the wheels",
+    changeWheels: "Change wheels",
+    delete: "Delete",
+    insideGarage: "We look inside the garage",
+    inGarage: "Inside the garage: ",
+    wheelsStatus: "Wheels status:",
+    installed: "Installed:",
+    standardWheels: "Standard wheels",
+    modify: "Modify your car:",
+    makeIt: "Make it ",
+    close: "Close garage door",
+    alertFull: "The area is full! You can create no more than 3 cars."
+  },
+  fr: {
+    title: "Service de voiture pour enfants avec ",
+    assemble: "Assembler une voiture selon le dessin",
+    empty: "Le terrain est vide. Appuyez sur le bouton ",
+    emptyEnd: " pour créer une voiture!",
+    details: "Voiture en détails",
+    returnWheels: "Rendre les roues",
+    changeWheels: "Changer de roues",
+    delete: "Supprimer",
+    insideGarage: "On regarde à l'intérieur du garage",
+    inGarage: "Dans le garage: ",
+    wheelsStatus: "Statut des roues:",
+    installed: "Installé:",
+    standardWheels: "Roues standards",
+    modify: "Modifier votre voiture:",
+    makeIt: "Rendre ",
+    close: "Fermer la porte du garage",
+    alertFull: "Le terrain est plein! Tu ne peux créer que 3 voitures."
+  }
+};
+
 export default function GameGarage() {
-  const [isEnglish, setIsEnglish] = useState(false);
+  const [lang, setLang] = useState('ru');
   const [cars, setCars] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null); // Для функции READ (просмотр внутри)
 
+  const t = translations[lang];
 
-  // Получаем машину, которую открыли в гараже
-  const liveCar = cars.find(c => c?.id === selectedCar?.id);
-  const carData = liveCar ? CAR_TYPES[liveCar.type] : null;
+  // Хелперы для получения динамических данных машин в зависимости от языка
+  const getCarName = (carData) => {
+    if (lang === 'en') return carData.nameEn;
+    if (lang === 'fr') return carData.nameFr;
+    return carData.nameRu;
+  };
+
+  const getCarColor = (carData) => {
+    if (lang === 'en') return carData.colorEn;
+    if (lang === 'fr') return carData.colorFr;
+    return carData.colorRu;
+  };
+
+  const getCarMod = (carData) => {
+    if (lang === 'en') return carData.modEn;
+    if (lang === 'fr') return carData.modFr;
+    return carData.modRu;
+  };
+
+  // Циклическое переключение языков: RU -> EN -> FR -> RU
+  const toggleLanguage = () => {
+    if (lang === 'ru') setLang('en');
+    else if (lang === 'en') setLang('fr');
+    else setLang('ru');
+  };
+
+  // Определение названия кнопки переключения
+  const getLangButtonLabel = () => {
+    if (lang === 'en') return "English";
+    if (lang === 'fr') return "Français";
+    return "Русский";
+  };
 
   // 1. CREATE: Создание случайной машинки (Максимум 4 на площадке)
   const addRandomCar = () => {
     if (cars.length >= 3) {
-      alert('Площадка заполнена! Можно создать не больше 3 машинок.');
+      alert(t.alertFull);
       return;
     }
     const types = Object.keys(CAR_TYPES);
@@ -87,11 +177,11 @@ export default function GameGarage() {
 
   return (
     <div className='container'>
-      <button className='language' onClick={() => setIsEnglish(!isEnglish)}>
-        {isEnglish ? "Русский" : "English"}
+      <button className='language' onClick={toggleLanguage}>
+        {getLangButtonLabel()}
       </button>
       <h1 className='title'>
-        {isEnglish ? "Kids car service with " : "Детский автосервис вместе с "} 
+        {t.title} 
         <img src={crud} width={100} height={40} alt='CRUD' loading="lazy" aspectRatio= '1 / 1'/>
         </h1>
       
@@ -99,7 +189,7 @@ export default function GameGarage() {
       <div className='toolbar'>
         <button className='createButton' onClick={addRandomCar}>
           <img src={c} width={160} height={60} alt='create' loading="lazy" aspectRatio= '1 / 1'/>
-          {isEnglish ? "Assemble a car using the drawing" : "Собрать машинку по чертежу"}
+          {t.assemble}
            ({cars.length}/3)
         </button>
       </div>
@@ -108,9 +198,9 @@ export default function GameGarage() {
       <div className='playground'>
         {cars.length === 0 ? (
           <p className='emptyText'>
-            {isEnglish ? "The area is empty. Push button " : "Площадка пуста. Нажмите кнопку "} 
+            {t.empty} 
           <img src={c} width={160} height={60} alt='create' loading="lazy" aspectRatio= '1 / 1'/>
-          {isEnglish ? " to create a car!" : ", чтобы создать машинку!"}</p>
+          {t.emptyEnd}</p>
         ) : (
           cars.map((car) => {
             const carData = CAR_TYPES[car.type];
@@ -118,7 +208,7 @@ export default function GameGarage() {
 
             return (
               <div key={car.id} className='carCard'>
-                <img src={currentImg} alt={isEnglish ? carData.nameEn : carData.nameRu} className='carImage' loading="lazy" aspectRatio= '1 / 1'/>
+                <img src={currentImg} alt={getCarName(carData)} className='carImage' loading="lazy" aspectRatio= '1 / 1'/>
                 
                 <div style={{
                     ...styles.carBadge,
@@ -126,14 +216,14 @@ export default function GameGarage() {
                     fontWeight: 'bold',
                     fontSize: '18px'
                 }}>
-                {isEnglish ? carData.colorEn : carData.colorRu} {car.isModified && '⭐'}
+                {getCarColor(carData)} {car.isModified && '⭐'}
                 </div>
 
                 <div className='actions'>
                   {/* READ */}
                   <button className='btnRead' onClick={() => setSelectedCar(car)}>
                     <img src={r} width={110} height={34} alt='read' loading="lazy" aspectRatio= '1 / 1'/>
-                   <span>{isEnglish ? 'Car in details' : 'Рассмотреть машинку'}</span> 
+                   <span>{t.details}</span> 
                   </button>
                   
                   {/* UPDATE Колеса */}
@@ -141,15 +231,15 @@ export default function GameGarage() {
                     <img src={u} width={120} height={35} alt='update' loading="lazy" aspectRatio= '1 / 1'/>
                     <span>
                       {car.isModified 
-                      ? (isEnglish ? 'Return the wheels' : 'Вернуть колеса') 
-                      : (isEnglish ? 'Change wheels' : 'Сменить колеса')}
+                      ? (t.returnWheels) 
+                      : (t.changeWheels)}
                       </span> 
                   </button>
 
                   {/* DELETE */}
                   <button className='btnDelete' onClick={() => deleteCar(car.id)}>
                     <img src={d} width={100} height={30} alt='delete' loading="lazy" aspectRatio= '1 / 1'/>
-                    <span>{isEnglish ? 'Delete' : 'Удалить'}</span> 
+                    <span>{t.delete}</span> 
                   </button>
                 </div>
               </div>
@@ -169,10 +259,10 @@ export default function GameGarage() {
             <div className='modal'>
               <h2>
                 <img src={r} width={110} height={34} alt='read' loading="lazy" aspectRatio= '1 / 1'/>
-                 {isEnglish ? 'We look inside the garage' : 'Заглядываем внутрь гаража'}
+                 {t.insideGarage}
                 </h2>
-              <p>{isEnglish ? 'Inside the garage: ' : 'В гараже: '} 
-                <strong>{isEnglish ? carData.nameEn : carData.nameRu}</strong></p>
+              <p>{t.inGarage} 
+                <strong>{getCarName(carData)}</strong></p>
               
               <div className='modalContent'>
                 <img 
@@ -186,11 +276,11 @@ export default function GameGarage() {
                 <div className='specs'>
                   <p><strong>
                     <img src={r} width={110} height={34} alt='read' loading="lazy" aspectRatio= '1 / 1'/>
-                    {isEnglish ? 'Wheels status:' : 'Статус колес:'}
+                    {t.wheelsStatus}
                     </strong>{' '} 
                     {liveCar.isModified 
-                    ? `${isEnglish ? 'Installed:' : 'Установлено:'} ${isEnglish ? carData.modEn : carData.modRu}`  
-                    : (isEnglish ? 'Standard wheels' : 'Стандартные колеса')}
+                    ? `${t.installed} ${getCarMod(carData)}`  
+                    : (t.standardWheels)}
                   </p>
                   
                   {/* UPDATE цвета прямо из меню просмотра */}
@@ -198,7 +288,7 @@ export default function GameGarage() {
                     <p style={{margin: '5px 0'}}>
                         <strong>
                             <img src={u} width={120} height={35} alt='update' loading="lazy" aspectRatio= '1 / 1'/>
-                            {isEnglish ? 'Modify your car:' : 'Изменить машинку:'}
+                            {t.modify}
                             </strong></p>
                     {Object.keys(CAR_TYPES).map((colorKey) => (
                       <button
@@ -209,9 +299,9 @@ export default function GameGarage() {
                           border: liveCar.type === colorKey ? '3px solid black' : '1px solid #ccc'
                         }}
                         onClick={() => changeCarColor(liveCar.id, colorKey)}
-                        title={isEnglish 
-                          ? `Make it ${CAR_TYPES[colorKey].colorEn.toLowerCase()}` 
-                          : `Сделать ${CAR_TYPES[colorKey].colorRu.toLowerCase()}ной`
+                        title={lang==='ru'
+                          ? `${t.makeIt}${CAR_TYPES[colorKey].colorRu?.toLowerCase()}ной`
+                          : `${t.makeIt}${getCarColor(CAR_TYPES[colorKey])?.toLowerCase()}`
                         }
                       />
                     ))}
@@ -220,7 +310,7 @@ export default function GameGarage() {
               </div>
 
               <button className='closeButton' onClick={() => setSelectedCar(null)}>
-                ❌ {isEnglish ? 'Close garage door' : 'Закрыть дверь гаража'}
+                ❌ {t.close}
               </button>
             </div>
           </div>
