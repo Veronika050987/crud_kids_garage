@@ -19,7 +19,7 @@ export const CAR_TYPES = {
     id: 'blue', 
     nameRu: 'Синяя машинка', nameEn: 'Blue car', nameFr: 'Voiture bleue',
     modRu: 'Синие диски', modEn: 'Blue rims', modFr: 'Disques bleus',
-    colorRu: 'Синий', colorEn: 'Blue', сolorFr: 'Bleu',
+    colorRu: 'Синий', colorEn: 'Blue', colorFr: 'Bleu',
     imgNormal: blue_car, imgMod: blue_car_mod 
   },
   green: { 
